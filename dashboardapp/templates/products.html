@@ -1,0 +1,201 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Products Page</h1>
+
+<form method="POST" class="mb-4">
+
+    {% csrf_token %}
+
+    <div class="row">
+
+        <div class="col-md-3">
+
+            <input
+                type="text"
+                name="name"
+                placeholder="Product Name"
+                class="form-control"
+                required
+            >
+
+        </div>
+
+        <div class="col-md-2">
+
+            <input
+                type="number"
+                name="quantity"
+                placeholder="Quantity"
+                class="form-control"
+                required
+            >
+
+        </div>
+
+        <div class="col-md-2">
+
+            <input
+                type="number"
+                name="price"
+                placeholder="Price"
+                class="form-control"
+                required
+            >
+
+        </div>
+
+        <div class="col-md-3">
+
+            <input
+                type="text"
+                name="category"
+                placeholder="Category"
+                class="form-control"
+                required
+            >
+
+        </div>
+
+        <div class="col-md-2">
+
+            <button
+                type="submit"
+                class="btn btn-primary w-100"
+            >
+
+                Add Product
+
+            </button>
+
+        </div>
+
+    </div>
+
+</form>
+<br><br>
+
+
+<form method="GET" class="mb-4">
+
+    <div class="row">
+
+        <div class="col-md-10">
+
+            <input
+                type="text"
+                name="search"
+                placeholder="Search Product"
+                class="form-control"
+                required
+            >
+
+        </div>
+
+        <div class="col-md-2">
+
+            <button
+                type="submit"
+                class="btn btn-dark w-100"
+            >
+
+                Search
+
+            </button>
+
+        </div>
+
+    </div>
+
+</form>
+
+<br>
+
+<a
+    href="/export-products-pdf/"
+    class="btn btn-danger mb-3"
+>
+
+    Export PDF
+
+</a>
+
+<div class="table-responsive">
+
+<table class="table table-bordered table-hover table-striped bg-white">
+    <tr style="background:#1e293b;color:white;">
+
+        <th style="padding:15px;">ID</th>
+        <th>Name</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Category</th>
+        <th>Action</th>
+
+    </tr>
+
+    {% for product in products %}
+
+    <tr>
+
+        <td style="padding:15px;">
+            {{ product.id }}
+        </td>
+
+        <td>
+            {{ product.name }}
+        </td>
+
+        <td>
+            {{ product.quantity }}
+        </td>
+
+        <td>
+            ₹{{ product.price }}
+        </td>
+
+        <td>
+            {{ product.category }}
+        </td>
+
+        <td>
+            <a
+                href="/update-product/{{ product.id }}/"
+                    style="
+                        background:skyblue;
+                        color:white;
+                        padding:8px;
+                        border-radius:5px;
+                        margin-right:10px;
+                    "
+            >
+
+                    Edit
+
+            </a>
+
+            <a
+                href="/delete-product/{{ product.id }}/"
+                style="
+                    background:red;
+                    color:white;
+                    padding:8px;
+                    border-radius:5px;
+                "
+            >
+
+                Delete
+
+           </a>
+
+         </td>
+
+    </tr>
+
+    {% endfor %}
+
+</table>
+</div>
+
+{% endblock %}

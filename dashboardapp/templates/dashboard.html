@@ -1,0 +1,149 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Dashboard</h1>
+
+<div class="row mt-4">
+
+    <div class="col-md-3">
+
+        <div class="card shadow border-0 bg-primary text-white">
+
+            <div class="card-body">
+
+                <h5>Total Products</h5>
+
+                <h1>{{ total_products }}</h1>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-3">
+
+        <div class="card shadow border-0 bg-success text-white">
+
+            <div class="card-body">
+
+                <h5>Total Employees</h5>
+
+                <h1>{{ total_employees }}</h1>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-3">
+
+        <div class="card shadow border-0 bg-dark text-white">
+
+            <div class="card-body">
+
+                <h5>Total Customers</h5>
+
+                <h1>{{ total_customers }}</h1>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-3">
+
+        <div class="card shadow border-0 bg-danger text-white">
+
+            <div class="card-body">
+
+                <h5>Total Orders</h5>
+
+                <h1>{{ total_orders }}</h1>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="card shadow mt-5">
+
+    <div class="card-body">
+
+        <h3 class="mb-4">
+
+            ERP Analytics
+
+        </h3>
+
+        <canvas id="myChart"></canvas>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+
+    const ctx = document.getElementById('myChart');
+
+    new Chart(ctx, {
+
+        type: 'bar',
+
+        data: {
+
+            labels: [
+
+                'Products',
+                'Employees',
+                'Customers',
+                'Orders'
+
+            ],
+
+            datasets: [{
+
+                label: 'ERP Analytics',
+
+                data: [
+
+                    {{ total_products }},
+                    {{ total_employees }},
+                    {{ total_customers }},
+                    {{ total_orders }}
+
+                ],
+
+                borderWidth: 1
+
+            }]
+
+        },
+
+        options: {
+
+            scales: {
+
+                y: {
+
+                    beginAtZero: true
+
+                }
+
+            }
+
+        }
+
+    });
+
+</script>
+
+{% endblock %}

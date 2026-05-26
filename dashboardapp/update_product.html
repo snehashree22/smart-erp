@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Update Product</h1>
+
+<form method="POST">
+
+    {% csrf_token %}
+
+    <input
+        type="text"
+        name="name"
+        value="{{ product.name }}"
+    >
+
+    <br><br>
+
+    <input
+        type="number"
+        name="quantity"
+        value="{{ product.quantity }}"
+    >
+
+    <br><br>
+
+    <input
+        type="number"
+        name="price"
+        value="{{ product.price }}"
+    >
+
+    <br><br>
+
+    <input
+        type="text"
+        name="category"
+        value="{{ product.category }}"
+    >
+
+    <br><br>
+
+    <button type="submit">
+
+        Update Product
+
+    </button>
+
+</form>
+
+{% endblock %}
