@@ -25,7 +25,11 @@ SECRET_KEY = 'django-insecure-&-r$lrnbmum#i-x%@6ci6p&8o%qn29t)yphy7k+5+kih!@g7wp
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '127.0.0.1',
+    'localhost',
+    'smart-erp-nko5.onrender.com'
+]
 
 
 # Application definition
